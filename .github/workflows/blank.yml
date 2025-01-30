@@ -15,29 +15,17 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-
-    # The type of runner that the job will run on
-    - uses: actions/checkout@v4
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
-    step1:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-        build:
-         runs-on: windows-latest
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-    step2:
-
-      - needs: [step1]
-      # Runs a set of commands using the runners shell
-      #- uses: actions/checkout@v4
-        build:
+    jobs1:
+         name: Run a one-line script
          runs-on: ubuntu-latest
-         
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+         steps:
+            - name: Step one
+              run: echo Hello, world!
+    
+    jobs2:
+         needs: [jobs1]
+         name: Run a new-line script
+         runs-on: ubuntu-latest
+         steps:
+            - name: Step one
+              run: echo Hello, Mars!
