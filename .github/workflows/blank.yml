@@ -27,5 +27,5 @@ jobs:
          name: Run a new-line script
          runs-on: ubuntu-latest
          steps:
-            - name: Step one
+            - name: Step second
               run: echo Hello, Mars!
