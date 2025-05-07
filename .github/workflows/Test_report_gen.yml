@@ -32,12 +32,14 @@ jobs:
         python Test_data_extraction.py
 
     - name: Commit and push CSV file
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
+        git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }}
         git add test_statistics.csv
-        git commit -m "Add/update test_statistics.csv [automated]"
-        git push
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        git commit -m "Add/update test_statistics.csv [automated]" || echo "No changes to commit"
+        git push origin HEAD:${{ github.ref_name }}
+
 
