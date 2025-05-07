@@ -1,0 +1,6 @@
+Metric,Count,Percentage
+Overall number of test cases,1083,
+Executed test cases,1083,100% of all test cases
+Not executed test cases,0,0% of all test cases
+Test cases passed,1083,100% of executed test cases
+Test cases failed,0,0% of executed test cases
