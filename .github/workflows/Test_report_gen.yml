@@ -1,31 +1,29 @@
-# This is a basic workflow to help you get started with Actions
+name: Run Python Script on HTML Push
 
-name: basic workflow check
-
-# Controls when the workflow will run
 on:
-  #Triggers the workflow on push or pull request events but only for the "main" branch
- push:
-  branches: [ "main" ]
- pull_request:
-  branches: [ "main" ]
+  push:
+    branches:
+      - main
+    paths:
+      - '**/*.html'  # triggers only if HTML files are pushed
 
-  # Allows you to run this workflow manually from the Actions tab
-  #workflow_dispatch:
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-    jobs1:
-         name: Run a one-line script
-         runs-on: ubuntu-latest
-         steps:
-            - name: Step one
-              run: echo Hello, world!
-    
-    jobs2:
-         needs: [jobs1]
-         name: Run a new-line script
-         runs-on: ubuntu-latest
-         steps:
-            - name: Step second
-              run: echo Hello, Mars!
+  run-python-script:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'  # or specify a version like '3.10'
+
+    - name: Install dependencies
+      run: |
+        pip install -r requirements.txt
+
+    - name: Run Python Script
+      run: |
+        python your_script.py
