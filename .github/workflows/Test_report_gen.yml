@@ -26,4 +26,4 @@ jobs:
 
     - name: Run Python Script
       run: |
-        python your_script.py
+        python Test_data_extraction.py
