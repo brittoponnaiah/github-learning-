@@ -33,7 +33,7 @@ jobs:
 
     - name: Commit and push CSV file
       env:
-        GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+        GITHUB_TOKEN: ${{ GRAFANA_POC.PERSONAL_ACCESS_TOKEN }}
       run: |
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
